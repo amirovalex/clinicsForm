@@ -10,6 +10,8 @@ import PhoneInput from './PhoneInput.component.jsx';
 import { TextField } from '@mui/material';
 import { inputLabelClasses } from "@mui/material/InputLabel";
 import {Checkbox} from '@mui/material';
+import axios from 'axios';
+
 const styles = {
     sx: {
       width: '100%',
@@ -21,6 +23,14 @@ const styles = {
     }
   }
 
+  let config = {
+    headers: {
+        'X-Api-Key': process.env.REACT_APP_API_KEY,
+        'X-Domain': 'api-my.clinics4all.com',
+        'Content-Type': 'application/json',
+        'Date': new Date().toUTCString(),
+    }
+  }
 const Form = () => {
     const [formStep, setFormStep] = useState(0) 
     const [gender, setGender] = useState(null)
@@ -99,6 +109,28 @@ const Form = () => {
 
     const handleDisclosure = (bool) => {
         setDisclosure(bool)
+    }
+
+    const handleSubmitForm = async () => {
+        try {
+            const resp = await axios({
+                method: 'post',
+                url: 'https://api-my.clinics4all.com/api/v1/customer',
+                headers: config.headers,
+                data: {
+                  firstName: fullName,
+                  lastName: fullName,
+                  email: email,
+                  phone: phone,
+                  password: "abc!123456",
+                  referrer: "984",
+                }
+              });
+              console.log(resp)
+        }
+        catch(err) {
+            console.log(err)
+        }
     }
 
     return (
@@ -383,7 +415,7 @@ const Form = () => {
             <p>I have reviewed, comprehended, and consented to the Patient Consent and Disclosure Statement.</p>
             </div>
             <div class="back-button-container">
-                <div onClick={() => setFormStep(6)}>
+                <div onClick={() => handleSubmitForm()}>
                 <NextButton/>
                 </div>
             </div>

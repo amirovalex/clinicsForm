@@ -239,16 +239,42 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 .range-text-right {
   position: absolute;
-  right: 100px;
+  right: 25%;
   bottom: 0px;
   font-size: 18px;
+
+  @media (max-width: 1500px) {
+    right: 20%;
+  }
+  @media (max-width: 1200px) {
+    right: 15%;
+  }
+  @media (max-width: 1050px) {
+    right: 10%;
+  }
+  @media (max-width: 900px) {
+    right: 5%;
+  }
 }
 
 .range-text-left {
   position: absolute;
-  left: 100px;
+  left: 25%;
   bottom: 0px;
   font-size: 18px;
+
+  @media (max-width: 1500px) {
+    left: 20%;
+  }
+  @media (max-width: 1200px) {
+    left: 15%;
+  }
+  @media (max-width: 1050px) {
+    left: 10%;
+  }
+  @media (max-width: 900px) {
+    left: 5%;
+  }
 }
 
 .next-button {
@@ -409,7 +435,7 @@ div:has(> #filled-basic-label) {
   outline: none;
   width: 100%;
   height: 60px;
-  padding: 20px 20px 20px 100px!important;
+  padding: 20px 20px 20px 50px!important;
   border: 2px dashed #B9F7EA;
   border-radius: 20px;
   font-size: 16px;

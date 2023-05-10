@@ -14,7 +14,7 @@ const PhoneInput = ({handlePhone, phone}) => {
     <input type="phone" id="phone" onChange={(e) => {
         console.log(iti.getNumber())
         console.log(iti.getSelectedCountryData())
-         handlePhone(e.target.value)
+         handlePhone(`+${iti.getSelectedCountryData().dialCode}${iti.getNumber()}`)
         }}/>
     )
 }
